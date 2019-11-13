@@ -6,7 +6,7 @@ class Configuration:
     @staticmethod
     def load_sensor_configuration():
         # only conf loading from env is supported at this time
-        return Configuration._load_sensor_configuration_from_env()
+        return [Configuration._load_sensor_configuration_from_env()]
 
     @staticmethod
     def _load_sensor_configuration_from_env():
@@ -14,10 +14,6 @@ class Configuration:
         gathering_interval = int(environ['GATHERING_INTERVAL'])
 
         return SensorConfiguration(sensor_name, gathering_interval)
-
-
-class TargetConfiguration:
-    pass
 
 
 class SensorConfiguration:
