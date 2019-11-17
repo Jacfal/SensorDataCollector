@@ -1,6 +1,6 @@
 from src.sensor import Sensor
 
-dummy_sensor_name = "DUMMY_SENSOR"
+dummy_sensor_name = "DUMMY"
 
 
 class Dummy(Sensor):

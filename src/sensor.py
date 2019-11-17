@@ -1,17 +1,18 @@
+from logging import getLogger
 from abc import ABC, abstractmethod
-
 from target_system import TargetSystem
+from typing import List
 
 
 class Sensor(ABC):
     """Sensor super class"""
 
-    def __init__(self):
-        self._target_systems = []
-        self._gathering_interval = 1
+    _log = getLogger(__name__)
+    _target_systems: List[TargetSystem] = []
+    _gathering_interval: int = 1
 
     @abstractmethod
-    def get_sensor_name(self):
+    def get_sensor_name(self) -> str:
         """Gets sensor name
 
         :return: a sensor name
@@ -20,7 +21,7 @@ class Sensor(ABC):
         pass
 
     @abstractmethod
-    def get_sensor_data(self):
+    def get_sensor_data(self) -> dict:
         """Sensor reads the data a returned them as a dictionary
 
         :return: sensor data
@@ -28,17 +29,48 @@ class Sensor(ABC):
         """
         pass
 
-    def add_target_system(self, target_system):
-        if not isinstance(target_system, TargetSystem):
-            raise TypeError("Invalid input data type")
+    def add_target_system(self, target_system: TargetSystem) -> None:
+        """Attach a target system to the sensor
+
+        :param target_system:
+        :return: None
+        """
+        self._log.info("Target system " + target_system.get_target_name() + " added for the sensor "
+                       + self.get_sensor_name())
 
         self._target_systems.append(target_system)
 
-    def set_gathering_interval(self, gathering_interval):
-        if not isinstance(gathering_interval, int):
-            raise TypeError("Mut be type of int")
+    def remove_target_system(self, target_system: TargetSystem) -> None:
+        """Remove a target system from the sensor
+
+        :param target_system:
+        :return: None
+        """
+        self._log.info("Target system " + target_system.get_target_name() + " removed for the sensor "
+                       + self.get_sensor_name())
+
+        self._target_systems.remove(target_system)
+
+    def set_gathering_interval(self, gathering_interval: int) -> None:
+        """Set gathering interval
+
+        :param gathering_interval:
+        :return: None
+        """
+        if gathering_interval < 0:
+            raise ValueError("Invalid value of gathering interval")
 
         self._gathering_interval = gathering_interval
 
-    def get_gathering_interval(self):
+    def get_gathering_interval(self) -> int:
+        """Get gathering interval
+
+        :return: int
+        """
         return self._gathering_interval
+
+    def start_gathering(self) -> None:
+        pass
+
+    def stop_gathering(self) -> None:
+        pass
