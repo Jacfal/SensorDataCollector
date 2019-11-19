@@ -1,6 +1,5 @@
 from logging import getLogger
 from abc import ABC, abstractmethod
-from target_system import TargetSystem
 from typing import List
 
 
@@ -8,11 +7,11 @@ class Sensor(ABC):
     """Sensor super class"""
 
     _log = getLogger(__name__)
-    _target_systems: List[TargetSystem] = []
+    _target_systems: List[str] = []
     _gathering_interval: int = 1
 
     @abstractmethod
-    def get_sensor_name(self) -> str:
+    def get_sensor_type(self) -> str:
         """Gets sensor name
 
         :return: a sensor name
@@ -29,27 +28,21 @@ class Sensor(ABC):
         """
         pass
 
-    def add_target_system(self, target_system: TargetSystem) -> None:
+    def add_target_system(self, target_name: str) -> None:
         """Attach a target system to the sensor
 
-        :param target_system:
+        :param target_name:
         :return: None
         """
-        self._log.info("Target system " + target_system.get_target_name() + " added for the sensor "
-                       + self.get_sensor_name())
+        self._target_systems.append(target_name)
 
-        self._target_systems.append(target_system)
-
-    def remove_target_system(self, target_system: TargetSystem) -> None:
+    def remove_target_system(self, target_name: str) -> None:
         """Remove a target system from the sensor
 
-        :param target_system:
+        :param target_name:
         :return: None
         """
-        self._log.info("Target system " + target_system.get_target_name() + " removed for the sensor "
-                       + self.get_sensor_name())
-
-        self._target_systems.remove(target_system)
+        self._target_systems.remove(target_name)
 
     def set_gathering_interval(self, gathering_interval: int) -> None:
         """Set gathering interval

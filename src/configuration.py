@@ -1,38 +1,27 @@
 from os import environ
 from typing import List
+import yaml
 
 
-class SensorConfiguration:
-    def __init__(self, sensor_name: str, gathering_interval: int = 1):
-
-        if gathering_interval < 1:
-            self._gathering_interval = 1
-        else:
-            self._gathering_interval = gathering_interval
-
-        self.sensor_name = sensor_name.upper()
-
-    def get_sensor_name(self):
-        return self.sensor_name
-
-    def get_sensor_gathering_interval(self):
-        return self._gathering_interval
+def load_sensor_configuration() -> dict:
+    # only conf loading from env is supported at this time
+    return load_sensor_configuration_from_yaml()
 
 
-class Configuration:
-
-    @staticmethod
-    def load_sensor_configuration() -> List[SensorConfiguration]:
-        # only conf loading from env is supported at this time
-        return [Configuration._load_sensor_configuration_from_env()]
-
-    @staticmethod
-    def _load_sensor_configuration_from_env() -> SensorConfiguration:
-        sensor_name = environ['SENSOR_NAME']
-        gathering_interval = int(environ['GATHERING_INTERVAL'])
-
-        return SensorConfiguration(sensor_name, gathering_interval)
+def load_sensor_configuration_from_yaml() -> dict:
+    return load_configuration_yaml()['sensor']
 
 
-class TargetConfiguration:
-    pass
+def load_target_configuration() -> dict:
+    # only conf loading from yaml is supported at this time
+    return load_target_configuration_from_yaml()
+
+
+def load_target_configuration_from_yaml() -> dict:
+    return load_configuration_yaml()['target']
+
+
+def load_configuration_yaml() -> dict:
+    with open('config.yml', 'r') as config_file:
+        cfg = yaml.load(config_file)
+    return cfg

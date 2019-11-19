@@ -1,0 +1,10 @@
+sensor:
+  dummySensor:
+    sensorType: "DUMMY_SENSOR"
+    gatheringInterval: 1
+    targets:
+      - nullTarget
+
+target:
+  nullTarget:
+    targetType: "NULL_TARGET"

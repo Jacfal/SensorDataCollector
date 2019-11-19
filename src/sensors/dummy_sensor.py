@@ -1,11 +1,11 @@
 from src.sensor import Sensor
 
-dummy_sensor_name = "DUMMY"
+dummy_sensor_type = "DUMMY_SENSOR"
 
 
-class Dummy(Sensor):
-    def get_sensor_name(self):
-        return dummy_sensor_name
+class DummySensor(Sensor):
+    def get_sensor_type(self):
+        return dummy_sensor_type
 
     def get_sensor_data(self):
         # create dummy data
