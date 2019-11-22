@@ -7,4 +7,4 @@ sensor:
 
 target:
   nullTarget:
-    targetType: "NULL_TARGET"
+    targetType: "LOG_TARGET"
