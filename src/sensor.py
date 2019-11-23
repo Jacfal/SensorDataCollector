@@ -64,9 +64,3 @@ class Sensor(ABC):
         :return: int
         """
         return self.__gathering_interval
-
-    def start_gathering(self) -> None:
-        pass
-
-    def stop_gathering(self) -> None:
-        pass

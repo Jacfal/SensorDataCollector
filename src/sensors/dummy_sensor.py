@@ -1,4 +1,6 @@
 from logging import getLogger
+from random import randint
+
 from src.sensor import Sensor
 
 dummy_sensor_type = "DUMMY_SENSOR"
@@ -15,7 +17,7 @@ class DummySensor(Sensor):
     def get_sensor_data(self):
         # create dummy data
         return {
-            "value_1": "1",
-            "value_2": "2",
-            "value_3": "3"
+            "value_1": randint(1, 100),
+            "value_2": randint(1, 100),
+            "value_3": randint(1, 100)
         }

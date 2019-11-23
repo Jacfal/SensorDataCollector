@@ -1,5 +1,8 @@
 import logging
+import time
 from typing import List
+
+from gatherer import Gatherer
 from helpers.sensor_helpers import create_sensor_from_configuration, create_targets_from_configuration
 from sensor import Sensor
 from src.configuration import load_target_configuration, load_sensor_configuration
@@ -18,15 +21,9 @@ def main():
         log_target: LogTarget = LogTarget("defaultLogger")
 
         sensor.add_sensor_data_subscriber(log_target.send_data)
-        sensor.send_sensor_data_to_subscribers()
 
-    # sensor_configuration = Configuration.load_sensor_configuration()
-
-    # for conf in sensor_configuration:
-    #    sensor: Sensor = create_sensor_from_configuration(conf, None)
-    #    sensor.start_gathering()
-
-    raise NotImplementedError
+        gatherer: Gatherer = Gatherer(sensor)
+        gatherer.start_gathering()
 
 
 if __name__ == "__main__":
