@@ -14,17 +14,17 @@ class Gatherer:
 
     def __gathering(self):
         lt = currentThread()
-        while getattr(lt, "gathering", True):
+        while getattr(lt, 'gathering', True):
             self.sensor.send_sensor_data_to_subscribers()
             sleep(self.sensor.get_gathering_interval())
 
     def start_gathering(self):
         """Start data gathering"""
-        self._log.info("Gathering started")
+        self._log.info(f'Gathering started on sensor {self.sensor.get_sensor_type()}')
         self.gatherer.start()
 
     def stop_gathering(self):
         """Stop data gathering"""
-        self._log.info("Gathering stopped")
+        self._log.info(f'Gathering stopped stopped on sensor {self.sensor.get_sensor_type()}')
         self.gatherer.gathering = False
         self.gatherer.join()

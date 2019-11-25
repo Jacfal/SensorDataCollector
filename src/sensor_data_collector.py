@@ -13,7 +13,7 @@ def main():
     logging.basicConfig(level=logging.NOTSET)
 
     targets: List[TargetSystem] = create_targets_from_configuration(load_target_configuration())
-    sensors: List[Sensor] = create_sensor_from_configuration(load_sensor_configuration())
+    sensors: List[Sensor] = create_sensor_from_configuration(load_sensor_configuration(), targets)
 
     # add targets to sensors
     for sensor in sensors:
