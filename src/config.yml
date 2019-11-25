@@ -4,7 +4,13 @@ sensor:
     gatheringInterval: 1
     targets:
       - nullTarget
+      - influxDb
 
 target:
   nullTarget:
     targetType: "LOG_TARGET"
+
+  influxDb:
+    targetType: "INFLUXDB_TARGET"
+    hostname: "localhost"
+    port: 8086

@@ -2,6 +2,7 @@ from typing import List
 from sensor import Sensor
 from sensors.dummy_sensor import DummySensor, dummy_sensor_type
 from target_system import TargetSystem
+from targets.influxdb_target import influxdb_target_type, InfluxDBTarget
 from targets.log_target import LogTarget, log_target_type
 
 
@@ -31,6 +32,10 @@ def create_targets_from_configuration(target_conf: dict) -> List[TargetSystem]:
 
         if target_type == log_target_type:
             targets.append(LogTarget(name))
+        elif target_type == influxdb_target_type:
+            influx_hostname = target_conf[name]['hostname']
+            influx_port = target_conf[name]['port']
+            targets.append(InfluxDBTarget(target_type, influx_hostname, influx_port))
         else:
             raise ValueError(target_type + ": invalid target type")
 

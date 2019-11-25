@@ -29,7 +29,7 @@ class Sensor(ABC):
 
     def send_sensor_data_to_subscribers(self):
         """Read sensor data with get_sensor_data() method an send them to registered subscribers"""
-        self.__on_send_data(self.get_sensor_data())
+        self.__on_send_data(self.get_sensor_type(), self.get_sensor_data())
 
     def add_sensor_data_subscriber(self, object_method) -> None:
         """Attach a target system to the sensor

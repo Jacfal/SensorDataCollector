@@ -13,5 +13,5 @@ class TargetSystem(ABC):
         pass
 
     @abstractmethod
-    def send_data(self, sensor_data: dict) -> None:
+    def send_data(self, sensor_type: str, sensor_data: dict) -> None:
         pass
