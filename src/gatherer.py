@@ -25,6 +25,6 @@ class Gatherer:
 
     def stop_gathering(self):
         """Stop data gathering"""
-        self._log.info(f'Gathering stopped stopped on sensor {self.sensor.get_sensor_type()}')
         self.gatherer.gathering = False
         self.gatherer.join()
+        self._log.info(f'Gathering stopped on sensor {self.sensor.get_sensor_type()}')
