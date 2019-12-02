@@ -1,7 +1,10 @@
+import threading
 from logging import getLogger
 from time import sleep
 from threading import Thread, currentThread
 from sensor import Sensor
+
+lock = threading.Lock()
 
 
 class Gatherer:
@@ -14,9 +17,11 @@ class Gatherer:
 
     def __gathering(self):
         lt = currentThread()
-        while getattr(lt, 'gathering', True):
-            self.sensor.send_sensor_data_to_subscribers()
-            sleep(self.sensor.get_gathering_interval())
+
+        with lock:
+            while getattr(lt, 'gathering', True):
+                self.sensor.send_sensor_data_to_subscribers()
+                sleep(self.sensor.get_gathering_interval())
 
     def start_gathering(self):
         """Start data gathering"""

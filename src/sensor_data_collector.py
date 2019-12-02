@@ -11,9 +11,7 @@ from target_system import TargetSystem
 from targets.log_target import LogTarget
 
 # todo_list:
-# TODO signal handler - SIGHUP
-# TODO better logging
-# TODO makefile
+# TODO setup.py
 # TODO real sensor implementation
 
 gatherers: List[Gatherer] = []
@@ -21,6 +19,7 @@ gatherers: List[Gatherer] = []
 
 def main():
     logging.basicConfig(level=logging.NOTSET)
+    logging.info("Starting application")
 
     targets: List[TargetSystem] = create_targets_from_configuration(load_target_configuration())
     sensors: List[Sensor] = create_sensor_from_configuration(load_sensor_configuration(), targets)
@@ -50,4 +49,9 @@ def stop_app(signal_code: int, frame: int):
 if __name__ == "__main__":
     # register the signals to be caught
     signal.signal(signal.SIGTERM, stop_app)
+    signal.signal(signal.SIGINT, stop_app)
     main()
+
+    # keep alive main thread
+    while True:
+        signal.pause()
