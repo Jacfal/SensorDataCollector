@@ -3,15 +3,16 @@ import signal
 import sys
 from typing import List
 
-from gatherer import Gatherer
-from helpers.sensor_helpers import create_sensor_from_configuration, create_targets_from_configuration
-from sensor import Sensor
-from configuration import load_target_configuration, load_sensor_configuration
-from target_system import TargetSystem
-from targets.log_target import LogTarget
+from jsdc.gatherer import Gatherer
+from jsdc.helpers.sensor_helpers import create_sensor_from_configuration, create_targets_from_configuration
+from jsdc.sensor import Sensor
+from jsdc.configuration import load_target_configuration, load_sensor_configuration
+from jsdc.target_system import TargetSystem
+from jsdc.targets.log_target import LogTarget
 
 # todo_list:
 # TODO setup.py
+# TODO log setting
 # TODO real sensor implementation
 
 gatherers: List[Gatherer] = []

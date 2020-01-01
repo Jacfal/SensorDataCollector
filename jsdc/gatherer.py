@@ -2,7 +2,7 @@ import threading
 from logging import getLogger
 from time import sleep
 from threading import Thread, currentThread
-from sensor import Sensor
+from jsdc.sensor import Sensor
 
 lock = threading.Lock()
 

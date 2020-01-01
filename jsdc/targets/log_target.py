@@ -1,4 +1,4 @@
-from target_system import TargetSystem
+from jsdc.target_system import TargetSystem
 
 log_target_type = "LOG_TARGET"
 

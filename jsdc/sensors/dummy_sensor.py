@@ -1,7 +1,7 @@
 from logging import getLogger
 from random import randint
 
-from sensor import Sensor
+from jsdc.sensor import Sensor
 
 dummy_sensor_type = "DUMMY_SENSOR"
 

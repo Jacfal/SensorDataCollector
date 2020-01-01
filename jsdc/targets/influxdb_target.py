@@ -2,7 +2,7 @@ import json
 from influxdb import InfluxDBClient
 from socket import gethostname
 
-from target_system import TargetSystem
+from jsdc.target_system import TargetSystem
 
 influxdb_target_type: str = "INFLUXDB_TARGET"
 
