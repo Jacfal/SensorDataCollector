@@ -11,9 +11,7 @@ from jsdc.target_system import TargetSystem
 from jsdc.targets.log_target import LogTarget
 
 # todo_list:
-# TODO setup.py
 # TODO log setting
-# TODO real sensor implementation
 
 gatherers: List[Gatherer] = []
 

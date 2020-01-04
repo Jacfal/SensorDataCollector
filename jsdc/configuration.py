@@ -1,6 +1,7 @@
-from os import environ
-from typing import List
+from os import path
 import yaml
+
+default_configuration_path = "/etc/jdc/config.yml"
 
 
 def load_sensor_configuration() -> dict:
@@ -22,6 +23,11 @@ def load_target_configuration_from_yaml() -> dict:
 
 
 def load_configuration_yaml() -> dict:
-    with open('config.yml', 'r') as config_file:
+    if path.exists(default_configuration_path):
+        config_path = default_configuration_path
+    else:
+        config_path = "config.yml"
+
+    with open(config_path, 'r') as config_file:
         cfg = yaml.load(config_file)
     return cfg
