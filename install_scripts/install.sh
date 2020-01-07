@@ -16,7 +16,7 @@ sudo wget -P $CONFIG_DIR https://raw.githubusercontent.com/Jacfal/SensorDataColl
 
 # install service
 printf "Installing services...\n"
-sudo wget -P /etc/systemd/system/ https://raw.githubusercontent.com/Jacfal/SensorDataCollector/master/jsdc/install_scripts/jsdc.service
+sudo wget -P /etc/systemd/system/ https://raw.githubusercontent.com/Jacfal/SensorDataCollector/master/install_scripts/jsdc.service
 
 #cleaning
 rm -rf $REPO_CLONE_PATH
