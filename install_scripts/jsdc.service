@@ -1,0 +1,11 @@
+[Unit]
+Description=Jacfal sensor data collector
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=jsdc
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
