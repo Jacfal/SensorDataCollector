@@ -1,7 +1,7 @@
 from os import path
 import yaml
 
-default_configuration_path = "/etc/jdc/config.yml"
+default_configuration_path = "/etc/jsdc/config.yml"
 
 
 def load_sensor_configuration() -> dict:
