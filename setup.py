@@ -8,14 +8,6 @@ HERE = pathlib.Path(__file__).parent
 
 README = (HERE / "README.md").read_text()
 
-
-def run(self):
-    install.run(self)
-    current_dir_path = os.path.dirname(os.path.realpath(__file__))
-    create_service_script_path = os.path.join(current_dir_path, 'install_scripts', 'create_service.sh')
-    subprocess.check_output([create_service_script_path])
-
-
 setup(
     name="jacfal-sensor-data-collector",
     version="0.0.1",
@@ -31,6 +23,8 @@ setup(
         "Programming Language :: Python :: 3.7",
     ],
     packages=find_packages(),
+    package_data={"jsdc": ["config.yml", "/etc/jdc/config.yml"]},
+    include_package_data=True,
     entry_points={
         "console_scripts": ["jsdc=jsdc.sensor_data_collector:main", ]
     },
