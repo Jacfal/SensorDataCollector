@@ -10,14 +10,16 @@ from jsdc.configuration import load_target_configuration, load_sensor_configurat
 from jsdc.target_system import TargetSystem
 from jsdc.targets.log_target import LogTarget
 
-# todo_list:
-# TODO log setting
-
 gatherers: List[Gatherer] = []
 
 
-def main():
-    logging.basicConfig(level=logging.NOTSET)
+def main(argv):
+    # args handling
+    if "--debug" in argv:
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
+
     logging.info("Starting application")
 
     targets: List[TargetSystem] = create_targets_from_configuration(load_target_configuration())
@@ -49,7 +51,7 @@ if __name__ == "__main__":
     # register the signals to be caught
     signal.signal(signal.SIGTERM, stop_app)
     signal.signal(signal.SIGINT, stop_app)
-    main()
+    main(sys.argv[1:])
 
     # keep alive main thread
     while True:

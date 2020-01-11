@@ -1,3 +1,5 @@
+#!/bin/bash
+
 CONFIG_DIR="/etc/jsdc/"
 REPO_URL="https://github.com/Jacfal/SensorDataCollector.git"
 REPO_CLONE_PATH="/tmp/jsdc_tmp"
@@ -7,7 +9,7 @@ git clone $REPO_URL $REPO_CLONE_PATH
 
 # install package
 printf "Installing python package via pip...\n"
-pip install -r /tmp/jsdc_tmp/requirements.txt $REPO_CLONE_PATH
+pip3 install -r /tmp/jsdc_tmp/requirements.txt $REPO_CLONE_PATH
 
 #creating configuration
 printf "Adding configuration...\n"
