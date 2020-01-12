@@ -1,5 +1,6 @@
 from typing import List
 from jsdc.sensor import Sensor
+from jsdc.sensors.bmp280 import bmp280_sensor_type, Bmp280
 from jsdc.sensors.dummy_sensor import DummySensor, dummy_sensor_type
 from jsdc.target_system import TargetSystem
 from jsdc.targets.influxdb_target import influxdb_target_type, InfluxDBTarget
@@ -15,6 +16,10 @@ def create_sensor_from_configuration(sensor_conf: dict, available_targets: List[
         sensor: Sensor
         if sensor_type == dummy_sensor_type:
             sensor = DummySensor()
+        elif sensor_type == bmp280_sensor_type:
+            port = sensor_conf[name]['port']
+            address = sensor_conf[name]['address']
+            sensor = Bmp280(port, address)
         else:
             raise ValueError(sensor_type + ": invalid sensor type")
 

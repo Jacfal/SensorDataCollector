@@ -1,2 +1,3 @@
 influxdb
 PyYAML
+RPi.bme280
