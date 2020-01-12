@@ -13,7 +13,9 @@ from jsdc.targets.log_target import LogTarget
 gatherers: List[Gatherer] = []
 
 
-def main(argv):
+def main():
+    argv = sys.argv[1:]
+
     # args handling
     if "--debug" in argv:
         logging.basicConfig(level=logging.DEBUG)
@@ -51,7 +53,7 @@ if __name__ == "__main__":
     # register the signals to be caught
     signal.signal(signal.SIGTERM, stop_app)
     signal.signal(signal.SIGINT, stop_app)
-    main(sys.argv[1:])
+    main()
 
     # keep alive main thread
     while True:
