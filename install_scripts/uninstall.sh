@@ -15,6 +15,6 @@ sudo rm -rf $CONFIG_DIR
 
 #removing package
 printf "Removing package..."
-pip uninstall jacfal-sensor-data-collector
+pip3 uninstall jacfal-sensor-data-collector
 
 printf "Removing complete\n"
